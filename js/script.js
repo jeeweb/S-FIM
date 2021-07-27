@@ -9,36 +9,36 @@ $(document).ready(function() {
 	
 	//util menu
 	$header.find('.header__util .header__util-item .header__util-menu').on('click', function() {
-			$(this).parent().toggleClass('header__util-item--active');
+		$(this).parent().toggleClass('header__util-item--active');
+		$popupDim.show();
+		
+		if ($(this).hasClass('header__util-bookmark')) {
+			$popupDim.hide();
+			$('.popup-dialog--bookmark').toggleClass('popup-wrap--active');
+		} else if ($(this).hasClass('header__util-allmenu')) {
 			$popupDim.show();
-			
-			if ($(this).hasClass('header__util-bookmark')) {
-					$popupDim.hide();
-					$('.popup-dialog--bookmark').toggleClass('popup-wrap--active');
-			} else if ($(this).hasClass('header__util-allmenu')) {
-					$popupDim.show();
-					$('.popup-layer--allmenu').toggleClass('popup-wrap--active');
-					if ($('.popup-dialog--bookmark').hasClass('popup-wrap--active')){
-							$('.popup-dialog--bookmark').removeClass('popup-wrap--active');
-							$header.find('.header__util-item').removeClass('header__util-item--active');
-					}
+			$('.popup-layer--allmenu').toggleClass('popup-wrap--active');
+			if ($('.popup-dialog--bookmark').hasClass('popup-wrap--active')){
+				$('.popup-dialog--bookmark').removeClass('popup-wrap--active');
+				$header.find('.header__util-item').removeClass('header__util-item--active');
 			}
+		}
 	});
 	
 	//gnb-bg_main
 	$gnb.children('.lst-gnb').on('mouseenter', function() {
-			$header.addClass('gnb--open');        
+		$header.addClass('gnb--open');        
 	});
 	$gnb.on({
-			'mouseleave': function() {
-					$header.removeClass('gnb--open');
-			},
-			'focusin': function() {
-					$header.addClass('gnb--open');
-			}
+		'mouseleave': function() {
+			$header.removeClass('gnb--open');
+		},
+		'focusin': function() {
+			$header.addClass('gnb--open');
+		}
 	});
 	$gnb.find('.lst-gnb .gnb_depth1:last .lst-gnb-sub .gnb_depth2:last a').on('focusout', function() {
-			$header.removeClass('gnb--open');
+		$header.removeClass('gnb--open');
 	});
 	$header.find('.header__util .header__util-item:last a').on('focusin', function() {
 			$header.removeClass('gnb--open');
