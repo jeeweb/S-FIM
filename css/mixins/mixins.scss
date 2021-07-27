@@ -1,0 +1,67 @@
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@mixin ellipsis-multiline($line) { // 여러줄 말줄임 (only. webkit)
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+/*
+  Font 설정방법 : 
+  @include font-size(14, 18, 400);
+  or @include font-size(14, false, 400);
+  or @include font-size(14, 18px, "normal");
+  1. font-size, line-height, font-weight를 지정하며 line-height는 font-size 대비 em으로 계산.
+  2. 하지만 line-height를 px를 지정하면 em으로 계산하지 않고 px로 바로 지정.
+  3. line-height, font-weight 는 생략 가능. (line-height:false)
+*/
+@mixin font-size($size: $initial-font-size, $lineHeight: false, $bold: false) {
+	@if unitless($size) {
+    // @warn "Assuming #{$size} to be in pixels";
+    $size: 1px * $size;
+  }
+  font-size: $size;
+  $lhr: 0;
+	@if $lineHeight {
+		@if unitless($lineHeight) {
+      // @warn "Assuming #{$size} to be in pixels";
+      $lineHeight: 1px * $lineHeight;
+      // $pow: pow(10, 2);
+      $lh: round($lineHeight / $size * 100) / 100;
+      $lhr: $lh * 1em;
+    }
+    @else {
+      $lhr: $lineHeight;
+    }
+    line-height: $lhr;
+	}
+	@if $bold {
+		font-weight: setFontWeight($bold);
+	}
+}
+
+@function setFontWeight($bold) {
+	@if $bold=="normal" {
+		@return 400;
+	}
+	@else if $bold == "bold" {
+    @return 700;
+  }
+	@else {
+		@return $bold;
+	}
+}

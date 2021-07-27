@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Smilegate 재무지원포탈 S-FIM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="../../css/smilegate_ux_template.css">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="../../js/jstree.min.js"></script>
+	<script type="text/javascript" src="../../js/script.js"></script>
+	<script>
+		$(function () {
+			// Tree JS
+			// CheckBox 없는 경우
+			$('#jstree').jstree({
+				"conditionalselect": function (node, event) {
+					return false;
+				},
+				"plugins": ["conditionalselect"]
+			});
+
+
+			// CheckBox 있는 경우
+			$('#jstree2').jstree({
+				"checkbox": {
+					"keep_selected_style": false
+				},
+				"types": {
+					"tree": {
+						"icon": "jstree-themeicon-tree"
+					}
+				},
+				"plugins": ["wholerow", "checkbox", "types"]
+			});
+
+			$('#jstree').on("changed.jstree", function (e, data) {
+				console.log(data.selected);
+			});
+
+			// datepicker
+			$(".input-field__datepicker").datepicker({
+				showOn: "button",
+				buttonImage: "../../img/icon_calendar.png",
+				buttonImageOnly: true,
+				buttonText: "Select date",
+				dateFormat: "yy/mm/dd",
+				yearSuffix: '년',
+				monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+				dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+				showMonthAfterYear: true,
+				prevText: "전월",
+				nextTexT: "차월",
+				currentText: "오늘",
+				closeText: "달력 닫기"
+			});
+
+			/* table--scroll-vertical (IE)  */
+			var tableWidth;
+
+			//비용항목 및 Activity
+			function tableWidthExpenseItem() {
+				tableWidth = $('.popup-layer--expenses-all').find('.table--scroll-vertical > .table-box > table > thead').outerWidth();
+
+				$('.popup-layer--expenses-all').find('.table--scroll-vertical > .table-box > table').css('width', tableWidth - 1);
+			}
+
+			//SGMA비용항목
+			function tableWidthSgmaItem() {
+				tableWidth = $('.popup-layer--expenses-sgma').find('.table--scroll-vertical > .table-box > table > thead').outerWidth();
+
+				$('.popup-layer--expenses-sgma').find('.table--scroll-vertical > .table-box > table').css('width', tableWidth - 1);
+			}
+
+			$('.input-field__input').on('dblclick', function () {
+				tableWidthExpenseItem();
+				tableWidthSgmaItem();
+			});
+
+
+		});
+	</script>
+
+</head>
+
+<body>
+	<!-- Skip Navigation -->
+	<ul class="skip">
+		<li><a href="#lnb"
+				onclick="document.getElementById('gnb').tabIndex=-1;document.getElementById('gnb').focus();return false;">메뉴
+				바로가기</a></li>
+		<li><a href="#container"
+				onclick="document.getElementById('container').tabIndex=-1;document.getElementById('container').focus();return false">본문
+				바로가기</a></li>
+	</ul>
+
+	<div class="wrap">
+		<header id="header" class="header">
+			<div class="header__inner">
+				<!-- Logo & Title -->
+				<div class="header__group-title">
+					<a href="../../index.html" class="header__title-menu">
+						<h1 class="sp icon-logo"><span class="blind">Smilegate</span></h1>
+						<em class="header__title-txt service_tit1">재무지원포탈</em>
+						<p class="header__title-txt service_tit2">S-FIM</p>
+					</a>
+				</div>
+
+				<!-- Util Menu (우측) -->
+				<ul class="header__util">
+					<li class="header__util-item">
+						<div class="lst-popup__item">
+							<button type="button" class="lst-popup__menu">
+								<div class="lst-popup__size-info">
+									<div class="header__util-menu header__util-user">
+										<span class="sp icon-user">
+											<img src="../../img/icon-user-dummy.jpg" alt="">
+										</span>
+									</div>
+									<em class="lst-popup__size-title">홍길동A</em>
+								</div>
+							</button>
+						</div>
+					</li>
+					<li class="header__util-item">
+						<a href="#" class="header__util-menu header__util-allmenu">
+							<span class="sp icon-allmenu">
+								<span class="blind">전체메뉴</span>
+							</span>
+						</a>
+					</li>
+					<li class="header__util-item">
+						<a href="#" class="header__util-menu header__util-bookmark">
+							<span class="sp icon-bookmark">
+								<span class="blind">즐겨찾기 및 최근이용내역</span>
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<nav id="gnb" class="gnb gnb-area">
+				<ul class="lst-gnb clearfix">
+					<li class="gnb_depth1">
+						<a href="#">법인카드</a>
+						<ul class="lst-gnb-sub">
+							<li class="gnb_depth2">
+								<a href="../../company_card/account/account_info.html">카드 신청/정산 처리</a>
+							</li>
+							<li class="gnb_depth2">
+								<a href="#">카드 한도 관리</a>
+							</li>
+						</ul>
+					</li>
+					<li class="gnb_depth1">
+						<a href="#">비용 정산</a>
+						<ul class="lst-gnb-sub">
+							<li class="gnb_depth2">
+								<a href="expense.html">전자결재</a>
+							</li>
+						</ul>
+					</li>
+					<li class="gnb_depth1">
+						<a href="#">재무전용</a>
+						<ul class="lst-gnb-sub">
+							<li class="gnb_depth2">
+								<a href="../../financial_link/exchange.html">환율 정보</a>
+							</li>
+							<li class="gnb_depth2">
+								<a href="../../financial_link/biz_chk/biz_num.html">거래처 휴/폐업 조회</a>
+							</li>
+							<li class="gnb_depth2">
+								<a href="https://txsi.hometax.go.kr/docs/main.jsp" target="_blank">국세법령정보시스템</a>
+							</li>
+							<li class="gnb_depth2">
+								<a href="https://www.kebhana.com/cont/mall/mall15/mall1501/index.jsp?_menuNo=23100"
+									target="_blank">하나은행(환율)</a>
+							</li>
+							<li class="gnb_depth2">
+								<a href="http://www.smbs.biz/index.jsp" target="_blank">서울외국환중개</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<span class="header--bg-pattern header--bg-pattern-left"></span>
+			<span class="header--bg-pattern header--bg-pattern-right"></span>
+		</header>
+
+		<!-- lnb -->
+		<div class="lnb lnb-area">
+			<ul class="lst-lnb">
+				<li class="lst-lnb__item lst-lnb__item--active">
+					<a href="#" class="lst-lnb__menu">
+						<span class="lst-lnb__menu-txt">전자결재</span>
+						<span class="sp icon-arrow--ms"><span class="blind">메뉴 열기</span></span>
+					</a>
+					<ul class="lst-lnb-sub">
+						<li class="lst-lnb-sub__item lst-lnb-sub__item--active">
+							<a href="expense.html" class="lst-lnb-sub__menu">
+								<span class="lst-lnb-sub__menu-txt">지출결의서</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+			<footer class="footer footer--lnb-type">
+				<div class="footer__inner">
+					<small class="footer__copyright">&copy; Smilegate. All Rights Reserved.</small>
+				</div>
+			</footer>
+
+			<button type="button" class="btn btn-lnb">
+				<span class="icon-arrow"><span class="blind">메뉴 열기</span></span>
+			</button>
+		</div>
+
+		<!-- container -->
+		<div id="container" class="container container--include-lnb container--fullview container-write">
+
+			<h2 class="page-title">지출결의서</h2>
+			<!-- <p class="page-title__dsc">· 지출결의서를 작성할 수 있는 페이지입니다.</p> -->
+			<div class="component-group align-right btn-box--absolute">
+				<div class="component-box">
+					<button type="button" class="btn btn-bookmark">
+						<span class="sp icon-bookmark"></span>
+						<span class="blind">즐겨찾기 추가하기</span>
+					</button>
+				</div>
+				<div class="component-box">
+					<a href="#" class="btn btn--orange">
+						<span class="btn__txt">지출결의서 조회</span>
+					</a>
+				</div>
+			</div>
+			<div class="grid-layout">
+				<div class="grid-column grid-column10">
+					<div class="section section--border section-expense">
+						<div class="component-group">
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">지출결의서 작성</span></caption>
+									<colgroup>
+										<col width="12%">
+										<col>
+										<col width="12%">
+										<col>
+										<col width="12%">
+										<col>
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th">문서번호</th>
+											<td class="table__td table__td--data"><span class="table__txt bg--white">결재 완료 시, 발번됩니다.</span>
+											</td>
+											<th class="table__th">기안일자</th>
+											<td class="table__td table__td--data"><span class="table__txt"></span></td>
+											<th class="table__th">기안자</th>
+											<td class="table__td table__td--data"><span class="table__txt"></span></td>
+										</tr>
+										<tr>
+											<th class="table__th">기안부서</th>
+											<td colspan="5" class="table__td table__td--data"><span
+													class="table__txt">SGH>IT기술본부>기술지원담당>정보시스템실>정보개발팀</span></td>
+										</tr>
+										<tr>
+											<th class="table__th table__th--required">제목</th>
+											<td colspan="5" class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" value="[SGH][지출결의서(현금)_김연준_2020-02-20]">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">계좌번호</th>
+											<td class="table__td table__td--data"><span class="table__txt"></span></td>
+											<th class="table__th">은행명</th>
+											<td class="table__td table__td--data"><span class="table__txt"></span></td>
+											<th class="table__th">예금주</th>
+											<td class="table__td table__td--data"><span class="table__txt"></span></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">비용항목에 따른 내역 작성</span></caption>
+									<colgroup>
+										<col width="60px">
+										<col>
+										<col width="10%">
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+										<col width="8.8%">
+										<col>
+										<col>
+									</colgroup>
+									<thead>
+										<tr>
+											<th rowspan="2" scope="col" class="table__th">선택</th>
+											<th rowspan="2" scope="col" class="table__th">예산부서</th>
+											<th rowspan="2" scope="col" class="table__th table__th--required">사용자 (귀속부서)</th>
+											<th colspan="2" class="table__th table__th--required align-center">비용항목</th>
+											<th colspan="2" scope="col" class="table__th table__th--required align-center">SGMA</th>
+											<th rowspan="2" scope="col" class="table__th table__th--required">가맹점</th>
+											<th rowspan="2" scope="col" class="table__th table__th--required">사용일자</th>
+											<th rowspan="2" scope="col" class="table__th table__th--required">적요</th>
+											<th rowspan="2" scope="col" class="table__th table__th--required table__txt--align-right">금액
+												(VAT포함)</th>
+										</tr>
+										<tr>
+											<th class="table__th table__th--required">중분류</th>
+											<th class="table__th table__th--required">소분류</th>
+											<th class="table__th table__th--required">Activity</th>
+											<th class="table__th table__th--required">비용항목</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="table__td">
+												<div class="btn_group">
+													<span class="btn-checkbox">
+														<input type="checkbox" id="checkbox_memberChk1" class="checkbox_member-leave">
+														<label for="checkbox_memberChk1" class="btn-checkbox__label"><span
+																class="blind">선택</span></label>
+													</span>
+												</div>
+											</td>
+											<td class="table__td">
+												<span class="table__txt">스마일게이트 홀딩스</span>
+											</td>
+											<td class="table__td table__td--btn">
+												<span class="table__txt">홍길동A<br>정보개발시스템실</span>
+												<button type="button" class="btn btn-change-user"
+													onclick="window.open('../../popup/popup_user.html', '사용자 변경 팝업', 'width=1200, height=667, left=200, top=100');">
+													<span class="sp icon-change-user"><span class="blind">사용자 선택 팝업</span></span>
+												</button>
+											</td>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" placeholder="선택해주세요."
+														ondblclick="window.open('../../popup/popup_expenses_all.html', '비용항목 및 Activity 선택하기 팝업', 'width=1000, height=662, left=200, top=100');">
+												</div>
+											</td>
+											<td class="table__td table__td--data">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" disabled>
+												</div>
+											</td>
+											<td class="table__td table__td--data">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" placeholder="선택해주세요."
+														ondblclick="window.open('../../popup/popup_expenses_sgma.html', '비용항목 및 Activity 선택하기 팝업', 'width=560, height=662, left=200, top=100');">
+												</div>
+											</td>
+											<td class="table__td table__td--data">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" disabled>
+												</div>
+											</td>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" placeholder="입력해주세요.">
+												</div>
+											</td>
+											<td class="table__td">
+												<div class="input-field">
+													<input type="text" class="input-field__input input-field__datepicker" readonly>
+												</div>
+											</td>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input" placeholder="입력해주세요.">
+												</div>
+												<span class="table__txt table__txt-caption txt--blue"></span>
+											</td>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input table__txt--align-right" placeholder="입력해주세요.">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">지출결의서 합계금액</span></caption>
+									<colgroup>
+										<col width="60px">
+										<col>
+										<col width="10%">
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+										<col width="8.8%">
+										<col>
+										<col>
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th" colspan="10">합계</th>
+											<td class="table__td table__td--data">
+												<span class="table__txt table__txt--align-right"></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="component-box btn-box align-right">
+								<div class="component-box">
+									<button type="button" class="btn btn--small btn--bgtype">
+										<span class="btn__txt">삭제</span>
+									</button>
+								</div>
+								<div class="component-box">
+									<button type="button" class="btn btn--small btn--orange">
+										<span class="btn__txt">+ 추가</span>
+									</button>
+								</div>
+							</div>
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">기타 의견입력 및 관련 파일 첨부</span></caption>
+									<colgroup>
+										<col width="12%">
+										<col>
+										<col>
+										<col>
+										<col>
+										<col>
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th">의견입력</th>
+											<td class="table__td" colspan="5">
+												<div class="textarea">
+													<textarea name="" cols="30" rows="10" style="height:80px"></textarea>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">전표처리여부</th>
+											<td class="table__td" colspan="5">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">SmileDoc 파일 첨부</th>
+											<td class="table__td" colspan="5">
+												<div class="input-field input-field-table">
+													<button type="button" class="btn btn-file">
+														<label for="file1" class="btn__txt">파일선택</label>
+													</button>
+													<input type="file" id="file1" class="input-field__file blind">
+													<div class="input-field__file-box">
+														<div class="file-info"></div>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">파일 첨부</th>
+											<td class="table__td" colspan="5">
+												<div class="input-field input-field-table">
+													<button type="button" class="btn btn-file">
+														<label for="file2" class="btn__txt">파일선택</label>
+													</button>
+													<input type="file" id="file2" class="input-field__file blind">
+													<span class="input__dsc-txt">0 Bytes / 100 MB</span>
+													<div class="input-field__file-box">
+														<div class="file-info">
+															smilegate_test.xlsx
+															<button type="button" class="btn btn--remove"><span class="sp icon-delete"><span
+																		class="blind">닫기</span></span></button>
+														</div>
+														<div class="file-info">
+															smilegate_test.xlsx
+															<button type="button" class="btn btn--remove"><span class="sp icon-delete"><span
+																		class="blind">닫기</span></span></button>
+														</div>
+														<div class="file-info">
+															smilegate_test.xlsx
+															<button type="button" class="btn btn--remove"><span class="sp icon-delete"><span
+																		class="blind">닫기</span></span></button>
+														</div>
+														<div class="file-info">
+															smilegate_test.xlsx
+															<button type="button" class="btn btn--remove"><span class="sp icon-delete"><span
+																		class="blind">닫기</span></span></button>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+
+										<tr>
+											<th class="table__th">참조결재</th>
+											<td class="table__td" colspan="5">
+												<div class="input-field input-field-table">
+													<button type="button" class="btn btn-file">
+														<label for="file3" class="btn__txt">파일선택</label>
+													</button>
+													<input type="file" id="file3" class="input-field__file blind">
+													<div class="input-field__file-box">
+														<div class="file-info"></div>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="component-group btn-box align-center">
+						<div class="component-box">
+							<button type="button" class="btn btn--large btn--bgtype">
+								<span class="btn__txt">삭제</span>
+							</button>
+						</div>
+						<div class="component-box">
+							<button type="button" class="btn btn--large">
+								<span class="btn__txt">저장</span>
+							</button>
+						</div>
+						<div class="component-box">
+							<button type="button" class="btn btn--large btn--orange">
+								<span class="btn__txt">결제상신</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Popup -->
+
+		<div class="popup__dimmed"></div>
+
+		<!-- header - BookMark -->
+		<div class="popup-wrap popup-dialog--simple popup-dialog--bookmark">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup__inner-wrap">
+						<div class="popup__header">
+							<strong class="popup__header-txt">즐겨찾는 메뉴</strong>
+							<a href="#" class="btn btn--link">
+								<span class="sp icon-modify"></span>
+							</a>
+						</div>
+						<div class="popup__contents">
+							<ul class="popup__lst">
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">법인카드 정산</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">나의 투입률 관리</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">당월손익</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">전자세금계산서</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">택시비 정산</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">환율 정보</span>
+									</a>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					<div class="popup__inner-wrap">
+						<div class="popup__header">
+							<strong class="popup__header-txt">최근 이용 내역</strong>
+						</div>
+						<div class="popup__contents">
+							<ul class="popup__lst">
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">법인카드 정산</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">차량운행일지</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">공지사항</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">스마일락(동호회) 정산</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">부서/프로젝트 관리</span>
+									</a>
+								</li>
+								<li class="popup__lst-item">
+									<a href="#" class="popup__lst-menu">
+										<span class="popup__menu-txt">환율 정보</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close"><span class="blind">닫기</span></span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Change User -->
+		<div class="popup-wrap popup-layer--user">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup__header">
+						<strong class="popup__header-txt">사용자 조직도</strong>
+					</div>
+					<div class="popup__contents clearfix">
+						<div class="popup__contents-inner">
+							<div class="component-group">
+								<div class="tree-area">
+									<strong class="content-title content-title--bold">Smilegate Group</strong>
+									<div class="popup__contents-items">
+										<div id="jstree" class="tree-area__inner">
+											<ul>
+												<li data-jstree="{" type":"tree"}">스마일게이트 홀딩스
+													<ul>
+														<li data-jstree="{" type":"tree"}">CDO
+															<ul>
+																<li data-jstree="{" type":"tree"}">글로벌IP사업담당</li>
+															</ul>
+														</li>
+														<li data-jstree="{" type":"tree"}">CFO
+															<ul>
+																<li data-jstree="{" type":"tree"}">투자관리실</li>
+																<li>SGL재무회계팀</li>
+																<li>SGR재무회계팀</li>
+															</ul>
+														</li>
+														<li data-jstree="{" type":"tree"}">SG Irvine
+															<ul>
+																<li>Business Development</li>
+																<li>Finance/HR</li>
+																<li>SGP U.S</li>
+															</ul>
+														</li>
+														<li data-jstree="{" type":"tree"}">CRO
+															<ul>
+																<li data-jstree="{" type":"tree"}">홍보/ER담당</li>
+																<li data-jstree="{" type":"tree"}">자금실</li>
+																<li>대외협력팀</li>
+															</ul>
+														</li>
+														<li data-jstree="{" type":"tree"}">IT기술본부
+															<ul>
+																<li data-jstree="{" type":"tree"}">기술지원담당
+																	<ul>
+																		<li data-jstree="{" type":"tree"}">정보시스템실
+																			<ul>
+																				<li>정보개발팀</li>
+																				<li>인사시스템팀</li>
+																				<li>협업시스템팀</li>
+																			</ul>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+														<li data-jstree="{" type":"tree"}">정보서비스실
+															<ul>
+																<li>정보서비스팀</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li data-jstree="{" type":"tree"}">QA
+													<ul>
+														<li data-jstree="{" type":"tree"}">사내시스템 TEST
+															<ul>
+																<li>TEST</li>
+																<li>TEST</li>
+																<li>TEST</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li data-jstree="{" type":"tree"}">스마일게이트 엔터테인먼트
+													<ul>
+														<li data-jstree="{" type":"tree"}">사내시스템 TEST
+															<ul>
+																<li>TEST</li>
+																<li>TEST</li>
+																<li>TEST</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li data-jstree="{" type":"tree"}">스마일게이트 알피지
+													<ul>
+														<li data-jstree="{" type":"tree"}">사내시스템 TEST
+															<ul>
+																<li>TEST</li>
+																<li>TEST</li>
+																<li>TEST</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li data-jstree="{" type":"tree"}">스마일게이트 메가포트
+													<ul>
+														<li data-jstree="{" type":"tree"}">사내시스템 TEST
+															<ul>
+																<li>TEST</li>
+																<li>TEST</li>
+																<li>TEST</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li data-jstree="{" type":"tree"}">스마일게이트 스토브
+													<ul>
+														<li data-jstree="{" type":"tree"}">사내시스템 TEST
+															<ul>
+																<li>TEST</li>
+																<li>TEST</li>
+																<li>TEST</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popup__contents-inner popup__contents-search">
+							<em class="popup__contents-title popup__contents-title-search">검색결과</em>
+							<div class="popup__contents-items">
+								<div class="contents--draggable">
+									<div class="popup__contents-txt">
+										<span class="user_name">이덕호</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">박성균</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">A</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">B</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">이덕호</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">박성균</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">A</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">B</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">이덕호</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">박성균</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">A</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">B</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">이덕호</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">박성균</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">A</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">B</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">이덕호</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">박성균</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">A</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">B</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+
+
+
+								</div>
+							</div>
+						</div>
+						<div class="component-group">
+							<div class="btn-box">
+								<button type="button" class="btn-select">
+									<span class="sp icon-next">
+										<span class="blind">선택하기</span>
+									</span>
+								</button>
+								<button type="button" class="btn-remove">
+									<span class="sp icon-prev">
+										<span class="blind">선택에서 제외하기</span>
+									</span>
+								</button>
+							</div>
+						</div>
+						<div class="popup__contents-inner popup__contents-selected">
+							<em class="popup__contents-title popup__contents-title-selected">선택된 사용자</em>
+							<div class="popup__contents-items">
+								<div class="contents--droppable">
+									<div class="popup__contents-txt">
+										<span class="user_name">C</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">D</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">E</span>
+										<span class="user_position txt--blue">[실장]</span>
+										<span class="user_dept txt--green">정보시스템실</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+									<div class="popup__contents-txt">
+										<span class="user_name">F</span>
+										<span class="user_position txt--blue">[차장]</span>
+										<span class="user_dept txt--green">정보개발팀</span>
+										<span class="user_office txt--gray">스마일게이트홀딩스</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="popup__bottom">
+						<p class="popup__contents-txt">*검색된 결과는 <span class="txt--orange">Drag&Drop</span> 혹은 <span
+								class="txt--orange">더블클릭</span> 하시면 선택됩니다.</p>
+						<div class="popup__btn-box">
+							<button type="button" class="btn btn--bgtype">
+								<span class="btn__txt">취소</span>
+							</button>
+							<button type="button" class="btn btn--orange">
+								<span class="btn__txt">확인</span>
+							</button>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close"><span class="blind">닫기</span></span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- expense item-all -->
+		<div class="popup-wrap popup-layer--expenses popup-layer--expenses-all">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup_header">
+						<div class="popup__header-txt">비용항목 및 Activity</div>
+					</div>
+					<div class="popup__contents">
+						<div class="popup__contents-inner popup__contents-search">
+							<div class="component-box">
+								<form>
+									<fieldset>
+										<legend>비용항목 및 Activity 검색영역</legend>
+										<div class="search-form">
+											<em class="search-form__title">비용항목 - 중분류</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+										<div class="search-form">
+											<em class="search-form__title">비용항목 - 소분류</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+
+										<div class="search-form">
+											<em class="search-form__title">SGMA - Activity</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+										<div class="search-form">
+											<em class="search-form__title">SGMA - 비용항목</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<div class="component-box">
+								<button type="button" class="btn btn--bgtype">
+									<span class="btn__txt">검색</span>
+								</button>
+							</div>
+						</div>
+						<div class="popup__contents-inner popup__contents-table">
+							<div class="table table--scroll-vertical">
+								<div class="table-box">
+									<table>
+										<caption><span class="blind">비용항목 분류에 따른 SGMA Activity와 SGMA 비용항목 내역</span></caption>
+										<colgroup>
+											<col>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th class="table__th align-center" colspan="2">비용항목</th>
+												<th class="table__th align-center" colspan="2">SGMA</th>
+											</tr>
+											<tr>
+												<th class="table__th" scope="col">중분류</th>
+												<th class="table__th" scope="col">소분류</th>
+												<th class="table__th" scope="col">Activity</th>
+												<th class="table__th" scope="col">비용항목</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">야근식대</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_식대</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">식대(야근식대x)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_식대</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사내커뮤니케이션비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">회의비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">간식대(회의비)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">회의비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사내커뮤니케이션</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">회의비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">경조사-복리</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_경조</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">카페물품구매(식품)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">건강검진</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_건강검진</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">기타-복리</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">수수료,통신,기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">게임관련(소액결제)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">게임소액결제</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">총무(카드)-국내출장</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">기타수수료-총무(국내)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">국내출장_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">총무(카드)-국내출장</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">외부인사지원-총무(해외)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">접대비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">교육</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">직무/소통교육</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">교육_직무/소통_인재개발실</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">복리후생-사내이벤트(ER팀)</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">ER_사내이벤트</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close">
+							<span class="blind">닫기</span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- expense item-SGMA -->
+		<div class="popup-wrap popup-layer--medium popup-layer--expenses popup-layer--expenses-sgma">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup_header">
+						<div class="popup__header-txt">SGMA Activity 및 비용항목</div>
+					</div>
+					<div class="popup__contents">
+						<div class="popup__contents-inner popup__contents-search">
+							<div class="component-box">
+								<form>
+									<fieldset>
+										<legend>SGMA Activity와 SGMA 비용항목 검색영역</legend>
+										<div class="search-form">
+											<em class="search-form__title">SGMA - Activity</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+										<div class="search-form">
+											<em class="search-form__title">SGMA - 비용항목</em>
+											<div class="search-form__inner">
+												<input type="search">
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<div class="component-box">
+								<button type="button" class="btn btn--bgtype">
+									<span class="btn__txt">검색</span>
+								</button>
+							</div>
+						</div>
+						<div class="popup__contents-inner popup__contents-table">
+							<div class="table table--scroll-vertical">
+								<div class="table-box">
+									<table>
+										<caption><span class="blind">비용항목 분류에 따른 SGMA Activity와 SGMA 비용항목 내역</span></caption>
+										<colgroup>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th class="table__th align-center" colspan="2">SGMA</th>
+											</tr>
+											<tr>
+												<th class="table__th" scope="col">Activity</th>
+												<th class="table__th" scope="col">비용항목</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생_식대</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">회의비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생_경조</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">복리후생_건강검진</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">인건비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">교통비_야근택시</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">일반관리비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">교통비_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">일반관리비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">게임소액결제</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">국내출장_기타</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">접대비</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">교육_직무/소통_인재개발실</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+											<tr>
+												<td class="table__td">
+													<span class="table__txt">ER_사내이벤트</span>
+												</td>
+												<td class="table__td">
+													<span class="table__txt">사업추진비</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close">
+							<span class="blind">닫기</span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- expenses detail -->
+		<div class="popup-wrap popup-layer--medium popup-layer--expenses-detail">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup__header">
+						<strong class="popup__header-txt">
+							<span>교통비</span> - <span>야근교통비</span> 정보 입력
+						</strong>
+					</div>
+					<div class="popup__contents">
+						<div class="table__expenses table__expenses-transportation">
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">교통비 추가 정보 기입</span></caption>
+									<colgroup>
+										<col width="35%">
+										<col width="65%">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th">출발지</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">목적지</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">금액</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">업무시작 / 종료시간</th>
+											<td class="table__td table__td--data">
+												<span class="table__txt"></span>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">거리(km)</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">인원수</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">탑승자</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">(* 편도기준)</th>
+											<td class="table__td table__td--btn align-center">
+												<button type="button" class="btn btn-calc">
+													<span class="btn__txt">계산</span>
+												</button>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">금액(자동계산)</th>
+											<td class="table__td table__td--data">
+												<span class="table__txt"></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="table__expenses table__expenses-entertainment">
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">접대비 추가 정보 기입</span></caption>
+									<colgroup>
+										<col width="35%">
+										<col width="65%">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th">업체명</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">업체담당자</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">목적</th>
+											<td class="table__td">
+												<div class="input-field input-field-table">
+													<input type="text" class="input-field__input">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<p class="popup__contents-txt align-center">청탁금지법(김영란법)이 2016.09.28로 시행됩니다.<br>스마일넷에 공지된 청탁금지법의
+								주요 세부 내용과<br>주의해야 할 부분에 대해 사전 확인 부탁드리겠습니다.</p>
+							<p class="popup__contents-txt align-center">
+								<a href="#" class="btn btn--link" target="_blank">
+									<span class="btn__txt">청탁금지법(김영란법) 시행 및 주요 내용 안내</span>
+								</a>
+							</p>
+						</div>
+						<div class="table__expenses table__expenses-travel">
+							<div class="table table-chain">
+								<table>
+									<caption><span class="blind">출장비 추가 정보 기입</span></caption>
+									<colgroup>
+										<col width="35%">
+										<col width="65%">
+									</colgroup>
+									<tbody>
+										<tr>
+											<th class="table__th">출장정보</th>
+											<td class="table__td">
+												<select name="expenseBizTrip1" id="expenseBizTrip1" class="dropdown-select">
+													<option value="search_period-draft" class="dropdown-select__menu">
+														<span class="dropdown__menu-txt">선택1</span>
+													</option>
+													<option value="search_period-use" class="dropdown-select__menu">
+														<span class="dropdown__menu-txt">선택2</span>
+													</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<th class="table__th">출장구분</th>
+											<td class="table__td">
+												<select name="expenseBizTrip2" id="expenseBizTrip2" class="dropdown-select">
+													<option value="search_period-draft" class="dropdown-select__menu">
+														<span class="dropdown__menu-txt">선택1</span>
+													</option>
+													<option value="search_period-use" class="dropdown-select__menu">
+														<span class="dropdown__menu-txt">선택2</span>
+													</option>
+												</select>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<p class="popup__contents-txt txt--orange align-center">출장보고서가 등록되었으며 정산이 미완료된 목록입니다.</p>
+						</div>
+					</div>
+					<div class="popup__bottom">
+						<div class="popup__btn-box">
+							<button type="button" class="btn btn--bgtype">
+								<span class="btn__txt">취소</span>
+							</button>
+							<button type="button" class="btn btn--orange">
+								<span class="btn__txt">저장</span>
+							</button>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close">
+							<span class="blind">닫기</span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- SiteMap -->
+		<div class="popup-wrap popup-layer--xxlarge popup-layer--allmenu">
+			<div class="popup-wrap__align-box">
+				<div class="popup-wrap__inner">
+					<div class="popup__inner-wrap clearfix">
+						<div class="popup__header">
+							<strong class="popup__header-txt">사이트맵</strong>
+						</div>
+						<div class="popup__contents popup__contents-inner-wrap">
+							<div class="popup__contents-inner">
+								<em class="popup__contents-title">대메뉴1</em>
+								<ul class="popup__lst">
+									<li class="popup__lst-item">
+										<a href="#" class="popup__lst-menu" target="_blank">
+											<span class="popup__contents-txt popup__lst-item-txt">서브메뉴1 <span
+													class="sp icon-external"></span></span>
+										</a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="#" class="popup__lst-menu" target="_blank"><span
+												class="popup__contents-txt popup__lst-item-txt">서브메뉴2 <span
+													class="sp icon-external"></span></span></a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="#" class="popup__lst-menu" target="_blank">
+											<span class="popup__contents-txt popup__lst-item-txt">서브메뉴3 <span
+													class="sp icon-external"></span></span>
+										</a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="#" class="popup__lst-menu" target="_blank">
+											<span class="popup__contents-txt popup__lst-item-txt">서브메뉴4 <span
+													class="sp icon-external"></span></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="popup__contents-inner">
+								<em class="popup__contents-title">법인카드</em>
+								<ul class="popup__lst">
+									<li class="popup__lst-item">
+										<a href="../../company_card/account/approval_info.html" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt">카드 신청/정산 처리</span></a>
+										<ul class="popup__lst-sub">
+											<li class="popup__lst-sub-item">
+												<a href="../../company_card/account/account_info.html" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">법인카드 정산</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="popup__lst-item">
+										<a href="#" class="popup__lst-menu"><span class="popup__contents-txt popup__lst-item-txt">카드 한도
+												관리</span></a>
+										<ul class="popup__lst-sub">
+											<li class="popup__lst-sub-item">
+												<a href="#" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">서브메뉴1</span>
+												</a>
+											</li>
+											<li class="popup__lst-sub-item">
+												<a href="#" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">서브메뉴2</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="popup__contents-inner">
+								<em class="popup__contents-title">비용 정산</em>
+								<ul class="popup__lst">
+									<li class="popup__lst-item">
+										<a href="expense.html" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt">전자결재</span></a>
+										<ul class="popup__lst-sub">
+											<li class="popup__lst-sub-item">
+												<a href="expense.html" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">지출결의서</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="popup__contents-inner">
+								<em class="popup__contents-title">재무전용</em>
+								<ul class="popup__lst">
+									<li class="popup__lst-item">
+										<a href="../../financial_link/exchange.html" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt">환율 정보</span></a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="../../financial_link/biz_chk/biz_num.html" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt">거래처 휴/폐업 조회</span></a>
+										<ul class="popup__lst-sub">
+											<li class="popup__lst-sub-item">
+												<a href="../../financial_link/biz_chk/biz_num.html" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">거래처 휴/폐업 조회</span>
+												</a>
+											</li>
+											<li class="popup__lst-sub-item">
+												<a href="../../financial_link/biz_chk/biz_chk_history.html" class="popup__lst-sub-menu">
+													<span class="popup__contents-txt popup__lst-sub-menu-txt">휴/폐업 조회 이력</span>
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="popup__lst-item">
+										<a href="https://txsi.hometax.go.kr/docs/main.jsp" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt" target="_blank">국세법령정보시스템 <span
+													class="sp icon-external"></span></span></a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="https://www.kebhana.com/cont/mall/mall15/mall1501/index.jsp?_menuNo=23100"
+											class="popup__lst-menu"><span class="popup__contents-txt popup__lst-item-txt"
+												target="_blank">하나은행(환율) <span class="sp icon-external"></span></span></a>
+									</li>
+									<li class="popup__lst-item">
+										<a href="http://www.smbs.biz/index.jsp" class="popup__lst-menu"><span
+												class="popup__contents-txt popup__lst-item-txt" target="_blank">서울외국환중개 <span
+													class="sp icon-external"></span></span></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="popup__btn-close">
+						<span class="sp icon-close"><span class="blind">닫기</span></span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

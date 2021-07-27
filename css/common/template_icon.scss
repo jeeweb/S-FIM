@@ -1,0 +1,455 @@
+/*
+	Sprites Icon 모음
+*/
+.sp {
+	display: inline-block;
+	background-repeat: no-repeat;
+	vertical-align: top;
+}
+
+
+/* 04. Common Section */
+// 4-1. Header
+.header {
+	.icon-logo {
+		@include sp-template_pc(icon-logo);
+	}
+	.icon-allmenu {
+		// Header Util Menu 임시 아이콘
+		@include sp-template_pc(icon-allmenu);
+	}
+}
+
+// 4-3. LNB
+.lst-lnb {
+	$this: &;
+	.icon-arrow--ms {
+		@include position(absolute, 17px, 25px, null, null);
+		@include sp-template_pc(icon-arrow-down--ms);
+	}
+	&__item--active {
+		.icon-arrow--ms {
+			@include sp-template_pc(icon-arrow-up--ms--orange);
+		}
+	}
+	&--optional {
+		.icon-arrow--ms {
+			right: 2px;
+		}
+	}
+}
+
+
+/* 05. UI Element */
+// 5-1. Popup
+.popup {
+	&__btn-close {
+		.icon-close {
+			display: block;
+			@include sp-template_pc(icon-layer-close);
+		}
+	}
+}
+
+// 5-2. List
+.table {
+	.icon-attachment {
+		display: block;
+		margin: 0 auto;
+		@include sp-template_pc('icon-attachment');
+	}
+	// Layer
+	&-layer {
+		&__btn-close {			
+			&:before {
+				@include position(absolute, 0, 0, 0, 0);
+				margin: auto;
+				@include sp-template_pc('icon-table-layer-close');
+				content: '';
+			}
+		}
+	}
+}
+.lst-thumbnail {
+	$this: &;
+	&__attachment {
+		&#{$this}__attachment--video {
+			&:before {
+				@include position(absolute, 50%, null, null, 50%);
+				z-index: 1;
+				margin: -24px 0 0 -24px;
+				@include sp-template_pc(icon-thumbnail-play);
+				content: '';
+			}
+		}
+	}
+	.icon-like {
+		margin-right: 5px;
+		vertical-align: middle;
+		@include sp-template_pc('icon-thumbnail-like');
+	}
+}
+
+// 5-4. Button
+.btn {
+	$this: &;
+	.sp {
+		margin-right: 8px;
+		vertical-align: middle;
+	}
+	.icon-add {
+		@include sp-template_pc(icon-button-add);
+	}
+	.icon-share {
+		@include sp-template_pc(icon-button-share);
+	}
+	.icon-print {
+		@include sp-template_pc(icon-button-print);
+	}
+	&:hover {
+		.icon-add {
+			@include sp-template_pc(icon-button-add--hover);
+		}
+		.icon-share {
+			@include sp-template_pc(icon-button-share--hover);
+		}
+		.icon-print {
+			@include sp-template_pc(icon-button-print--hover);
+		}
+	}
+	&:disabled,
+	&--disabled,
+	&--disabled:hover {
+		.icon-add {
+			@include sp-template_pc(icon-button-add--disabled);
+		}
+		.icon-share {
+			@include sp-template_pc(icon-button-share--disabled);
+		}
+		.icon-print {
+			@include sp-template_pc(icon-button-print--disabled);
+		}
+	}
+	&--icon {
+		.sp {
+			margin-right: 0;
+			vertical-align: top;
+		}
+	}
+	&--link {
+		#{$this}__txt {
+			&:before {
+				@include position(absolute, 50%, 0, null, null);
+				margin-top: -4px;
+				@include sp-template_pc(icon-button-arrow);
+				content: '';
+			}
+		}
+		&#{$this}--disabled {
+			#{$this}__txt {
+				&:before {
+					@include sp-template_pc(icon-button-arrow--disabled);
+				}
+			}	
+		}
+	}
+}
+
+// 5-5. Search
+.search-form {
+	$this: &;
+	.icon-search {
+		@include position(absolute, 10px, null, null, 16px);
+		@include sp-template_pc(icon-search);
+	}
+	&__bx-btn {
+		&:before {
+			@include position(absolute, 50%, null, null, 50%);
+			margin: -8px 0 0 -8px;
+			@include sp-template_pc(icon-search-delete);
+			content: '';
+		}
+	}
+	&--active {
+		.icon-search {
+			@include sp-template_pc(icon-search--active);
+		}		
+	}
+	&--big {
+		.icon-search {
+			top: 12px;
+			@include sp-template_pc(icon-search--big);
+		}
+	}
+}
+
+// 5-6. Check Box
+.btn-checkbox {
+	$this: &;
+	input[type='checkbox']:checked {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-checkbox--select');
+			}
+		}
+	}
+	input[type='checkbox']:disabled {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-checkbox--disabled');
+			}
+		}
+	}
+	input[type='checkbox']:checked:disabled {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-checkbox--select-disabled');
+			}
+		}
+	}
+	&__label {
+		&:before {
+			@include position(absolute, 4px, null, null, 0);
+			@include sp-template_pc('icon-checkbox');
+			content: '';
+		}
+		&:hover {
+			&:before {
+				@include sp-template_pc('icon-checkbox--hover');
+			}
+		}
+	}
+}
+
+// 5-7. Radio Button
+.btn-radio {
+	$this: &;
+	input[type='radio']:checked {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-radio--select');
+			}
+		}
+	}
+	input[type='radio']:disabled {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-radio--disabled');
+			}
+		}
+	}
+	input[type='radio']:checked:disabled {
+		& + #{$this}__label {
+			&:before {
+				@include sp-template_pc('icon-radio--select-disabled');
+			}
+		}
+	}
+	&__label {
+		&:before {
+			@include position(absolute, 4px, null, null, 0);
+			@include sp-template_pc('icon-radio');
+			content: '';
+		}
+		&:hover {
+			&:before {
+				@include sp-template_pc('icon-radio--hover');
+			}
+		}
+	}
+}
+
+// 5-8. Input Field & Text Area
+.input-field {
+	.icon-error {
+		@include position(absolute, 0, null, null, 0);
+		@include sp-template_pc('icon-error');
+	}
+}
+.textarea {
+	.icon-error {
+		@include position(absolute, 1px, null, null, 0);
+		@include sp-template_pc('icon-error');
+	}
+}
+
+// 5-9. DatePicker
+.datepicker {
+	$this: &;
+	&#{$this}--active {
+		.input-field {			
+			.icon-datepicker {
+				@include sp-template_pc(icon-datepicker--select);
+			}
+		}
+	}
+	.input-field {
+		.icon-datepicker {
+			display: block;
+			@include sp-template_pc(icon-datepicker);
+		}		
+	}
+	.icon-prev {
+		display: block;
+		@include sp-template_pc(icon-datepicker-prev);
+	}
+	.icon-next {
+		display: block;
+		@include sp-template_pc(icon-datepicker-next);
+	}
+	// 연월 레이어
+	&__year-box {
+		.icon-close {
+			display: block;
+			@include sp-template_pc(icon-datepicker-close);
+		}
+	}
+}
+
+// 5-10. Dropdown
+.dropdown {
+	$this: &;
+	&__button {
+		.icon-arrow {
+			@include position(absolute, 12px, 11px, null, null);
+			@include sp-template_pc('icon-arrow-down');
+		}
+	}
+	&--active {
+		#{$this}__button {
+			.icon-arrow {
+				@include sp-template_pc('icon-arrow-up');
+			}
+		}
+	}
+	// Multi Dropdown
+	&__selected-item {
+		.icon-delete {
+			@include position(absolute, 10px, 8px, null, null);
+			@include sp-template_pc(icon-dropdown-delete);
+		}
+	}
+}
+
+// 5-11. Pagination
+.pagination {
+	$this: &;
+	&__btn {
+		.icon-first {
+			@include sp-template_pc('icon-pagination-first');
+		}
+		.icon-prev {
+			@include sp-template_pc('icon-pagination-prev');
+		}
+		.icon-next {
+			@include sp-template_pc('icon-pagination-next');
+		}
+		.icon-last {
+			@include sp-template_pc('icon-pagination-last');
+		}
+		&:hover {
+			.icon-first {
+				@include sp-template_pc('icon-pagination-first--hover');
+			}
+			.icon-prev {
+				@include sp-template_pc('icon-pagination-prev--hover');
+			}
+			.icon-next {
+				@include sp-template_pc('icon-pagination-next--hover');
+			}
+			.icon-last {
+				@include sp-template_pc('icon-pagination-last--hover');
+			}
+		}
+	}
+	&__btn--disabled {
+		.icon-first,
+		&:hover .icon-first {
+			@include sp-template_pc('icon-pagination-first--disabled');	
+		}
+		.icon-prev,
+		&:hover .icon-prev {
+			@include sp-template_pc('icon-pagination-prev--disabled');
+		}
+		.icon-next,
+		&:hover .icon-next {
+			@include sp-template_pc('icon-pagination-next--disabled');
+		}
+		.icon-last,
+		&:hover .icon-last {
+			@include sp-template_pc('icon-pagination-last--disabled');
+		}
+	}
+}
+
+// 5-12. Tooltip
+.icon-info {
+	@include sp-template_pc(icon-info);
+}
+
+// 5-15. Tree Menu
+/* Tree Default CSS */
+.jstree {
+	$this: &;
+	&-leaf {
+		#{$this}-ocl {
+			display: none;
+			// @include sp-template_pc(icon-tree-depth);
+		}
+		&#{$this}-last {
+			#{$this}-ocl {
+				display: none;
+				// @include sp-template_pc(icon-tree-last-depth);
+			}
+		}
+	}
+	&-ocl {
+		@include sp-template_pc(icon-tree-fold2);
+	}
+	&-closed {
+		#{$this}-ocl {
+			@include sp-template_pc(icon-tree-expend2);
+		}
+	}
+	&-icon {
+		display: inline-block;
+		position: relative;
+		z-index: 1;
+		background-repeat: no-repeat;
+		vertical-align: top;
+		&#{$this}-themeicon {
+			display: none;
+			@include sp-template_pc(icon-tree-folder);
+		}
+	}
+	
+	&-anchor {
+		#{$this}-checkbox {
+			margin: 9px 8px 0 -11px;
+			@include sp-template_pc(icon-tree-unchecked2);
+		}
+		#{$this}-open > & {
+			#{$this}-checkbox {
+				@include sp-template_pc(icon-tree-open-unchecked2);
+			}
+		}
+		&#{$this}-clicked {
+			#{$this}-checkbox {
+				@include sp-template_pc(icon-tree-checked2);
+			}
+		}
+	}
+	&-node {
+		&[data-jstree*='tree'] {
+			& > #{$this}-anchor { 
+				#{$this}-themeicon {
+					display: inline-block;
+					margin: 9px 4px 0 -3px;
+				}
+				#{$this}-checkbox + #{$this}-themeicon {
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}

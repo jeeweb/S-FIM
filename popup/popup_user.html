@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 팝업</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- jqueryUi.css -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">    
+    <!-- template.css -->
+    <link rel="stylesheet" type="text/css" href="../css/smilegate_ux_template.css"> 
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+    <script src="../../js/jquery.mtz.monthpicker.js"></script>
+  
+    <!-- script.js -->
+    <script type="text/javascript" src="../js/script.js"></script>    
+
+    <!-- jstree.js -->
+    <script type="text/javascript" src="../js/jstree.min.js"></script>
+    <!-- fieldChooser -->
+    <script type="text/javascript" src="../js/fieldChooser.js"></script>
+    
+    <script>
+        $(function () {
+            /* Tree JS */
+            // CheckBox 없는 경우
+            $('#jstree').jstree({
+                "conditionalselect" : function (node, event) {
+                    return false;
+                },
+                "plugins" : [ "conditionalselect" ]
+            });
+
+            // CheckBox 있는 경우
+            $('#jstree2').jstree({
+                "checkbox" : {
+                    "keep_selected_style" : false
+                },
+                "types" : {
+                    "tree" : {
+                        "icon" : "jstree-themeicon-tree"
+                    }
+                },
+                "plugins" : [ "wholerow", "checkbox", "types" ]
+            });
+
+            $('#jstree').on("changed.jstree", function (e, data) {
+                console.log(data.selected);
+            });
+            
+        });
+    </script>
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+	
+</head>
+<body>
+    <!-- Change User -->
+    <div class="popup-wrap popup-layer--drapdrop popup-layer--user popup-wrap--active">
+        <div class="popup-wrap__align-box">
+            <div class="popup-wrap__inner">
+                <div class="popup__header">
+                    <strong class="popup__header-txt">사용자 조직도</strong>
+                </div>
+                <div class="popup__contents clearfix">
+                    <div class="popup__contents-inner">
+                        <div class="component-group">  
+                            <div class="tree-area">
+                                <strong class="content-title content-title--bold">Smilegate Group</strong>
+                                <div class="popup__contents-items">
+                                    <div id="jstree" class="tree-area__inner">
+                                        <ul>
+                                            <li data-jstree="{"type":"tree"}">스마일게이트 홀딩스
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">CDO
+                                                        <ul>
+                                                            <li>글로벌IP사업담당</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree="{"type":"tree"}">CFO
+                                                        <ul>
+                                                        <li data-jstree="{"type":"tree"}">투자관리실</li>
+                                                        <li>SGL재무회계팀</li>
+                                                        <li>SGR재무회계팀</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree="{"type":"tree"}">SG Irvine
+                                                        <ul>
+                                                        <li>Business Development</li>
+                                                        <li>Finance/HR</li>
+                                                        <li>SGP U.S</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree="{"type":"tree"}">CRO
+                                                        <ul>
+                                                        <li data-jstree="{"type":"tree"}">홍보/ER담당</li>
+                                                        <li data-jstree="{"type":"tree"}">자금실</li>
+                                                        <li>대외협력팀</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree="{"type":"tree"}">IT기술본부
+                                                        <ul>
+                                                        <li data-jstree="{"type":"tree"}">기술지원담당
+                                                            <ul>
+                                                                <li data-jstree="{"type":"tree"}">정보시스템실
+                                                                    <ul>
+                                                                        <li>정보개발팀</li>
+                                                                        <li>인사시스템팀</li>
+                                                                        <li>협업시스템팀</li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li data-jstree="{"type":"tree"}">정보서비스실
+                                                        <ul>
+                                                        <li>정보서비스팀</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree="{"type":"tree"}">QA
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">사내시스템 TEST
+                                                        <ul>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree="{"type":"tree"}">스마일게이트 엔터테인먼트
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">사내시스템 TEST
+                                                        <ul>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree="{"type":"tree"}">스마일게이트 알피지
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">사내시스템 TEST
+                                                        <ul>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree="{"type":"tree"}">스마일게이트 메가포트
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">사내시스템 TEST
+                                                        <ul>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li data-jstree="{"type":"tree"}">스마일게이트 스토브
+                                                <ul>
+                                                    <li data-jstree="{"type":"tree"}">사내시스템 TEST
+                                                        <ul>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        <li>TEST</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="popup__contents-inner popup__contents-search">
+                        <em class="popup__contents-title popup__contents-title-search">검색결과</em>
+                        <div class="popup__contents-items">
+                            <div class="contents--draggable">
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">이덕호</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">박성균</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">A</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">B</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">이덕호</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">박성균</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">A</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">B</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">이덕호</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">박성균</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">A</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">B</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">이덕호</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">박성균</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">A</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">B</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">이덕호</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">박성균</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">A</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">B</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-group">
+                        <div class="btn-box">
+                            <button type="button" class="btn-select">
+                                <span class="sp icon-next">
+                                    <span class="blind">선택하기</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn-remove">
+                                <span class="sp icon-prev">
+                                    <span class="blind">선택에서 제외하기</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="popup__contents-inner popup__contents-selected">
+                        <em class="popup__contents-title popup__contents-title-selected">선택된 사용자</em>
+                        <div class="popup__contents-items">
+                            <div class="contents--droppable">
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">C</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">D</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">E</span>
+                                    <span class="user_position txt--blue">[실장]</span>
+                                    <span class="user_dept txt--green">정보시스템실</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                                <div class="popup__contents-txt">
+                                    <span class="user_name">F</span>
+                                    <span class="user_position txt--blue">[차장]</span>
+                                    <span class="user_dept txt--green">정보개발팀</span>
+                                    <span class="user_office txt--gray">스마일게이트홀딩스</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="popup__bottom">
+                    <p class="popup__contents-txt">*검색된 결과는 <span class="txt--orange">Drag&Drop</span> 혹은 <span class="txt--orange">더블클릭</span> 하시면 선택됩니다.</p>
+                    <div class="popup__btn-box">
+                    <button type="button" class="btn btn--bgtype">
+                        <span class="btn__txt">취소</span>
+                    </button>
+                    <button type="button" class="btn btn--orange">
+                        <span class="btn__txt">확인</span>
+                    </button>
+                    </div>
+                </div>
+                <!-- <button type="button" class="popup__btn-close">
+                    <span class="sp icon-close"><span class="blind">닫기</span></span>
+                </button> -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

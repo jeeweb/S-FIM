@@ -1,0 +1,369 @@
+@charset "UTF-8";
+
+/* ========== import ========== */
+@import "mixins/mixins.scss";
+@import "common/variable.scss";
+
+
+/* ========== mixin ========== */
+@mixin verticalMiddle($val) {
+    height: $val;
+    line-height: $val;
+}
+@mixin transform($val){
+    -webkit-transform: $val;
+    -moz-transform: $val;
+    -o-transform: $val;
+    transform: $val;
+}
+
+
+/* ========== variable ========== */
+$table_th: #fafaff;
+
+
+/* ========== table ========== */
+
+/* table common */
+.table {
+    .table__th{        
+        color: $txt;
+        font-size: 13px;
+        &.table__txt--blue-dark{
+            color: $blue_dark;
+        }
+    }
+    .table__txt{
+        font-size: 13px;  
+        min-height: 20px;      
+    }
+    .table__txt-caption{
+        font-size: 12px;
+    }
+}
+
+/* Sub-page table common */
+.container--include-lnb .table {
+    border-color: $border_dark;
+    thead{
+        border-color: $border_dark;
+    }
+    tbody{
+        & + tbody{
+            border-top: 1px solid $border;
+        }
+        &.table__row-group--top{
+            border-bottom: 1px solid $border_dark;
+            .table__th{text-align: left;}
+        }
+    }
+    tr:first-of-type{
+        .table__th{
+            border-top: 0;
+        }
+        .table__td{
+            border-color: $border_dark
+        }
+        .table__th:last-child, .table__td:last-child{
+            border-right: 1px solid $border_dark;
+        }
+    }
+    .table__th{
+        text-align: center;
+        border: 1px solid $border_dark;    
+        border-width: 1px 0 0 1px; 
+        background-color: $table_th;
+        background-clip: padding-box;
+    }
+    
+    .table__td{
+        border-width: 1px 1px 0 1px;
+        border-color: $border_dark;  
+    }
+
+    .table__row--top, .table__row--highlight{
+        font-weight: 700;    
+        background-color: $blue_light;        
+        .table__td--data span{
+            background-color: $white;
+        }
+    }
+    /* .table__row--item.table__row--selected{
+        background-color: transparent;
+    } */
+    tr.table__row-sub--item{
+        display: none;
+        &.table__row--expanded{
+            display: table-row;
+        }
+    }
+    tr.table__row-sub--detail{
+        display: none;
+        &.table__row--expanded{
+            display: table-row;
+        }
+    }
+    .table__row-sub--item .table__th{
+        //padding-left: 24px;
+        &.table__th--btn-front{
+            padding-left: 29px;    
+            text-align: left;     
+            .sp{
+                left: 16px;
+            }
+        }
+    }
+    .table__row--expanded .table__td{
+        height: auto;
+    }
+}
+
+/* table-chain */
+.table.table-chain{
+    thead{
+        border-bottom: 1px solid $border_dark;
+        > *:last-child{
+            border-right: 1px solid $border_dark;
+        }
+    }
+    tr:first-child .table__td{
+        border-top: 0;
+    }
+     
+}
+
+/* table--scroll-vertical */
+.table--scroll-vertical .table-box{
+    max-height: 48vh;
+    table{
+        width: calc(100% - 1px);
+        transform-origin: 0 100%;
+
+    }
+    thead {
+        table-layout: fixed;
+        width: calc(100% - 1px);
+        z-index: 1;
+    }    
+}
+
+/* .table table .table table */
+.table table tbody .table__td.table__td--table{
+    padding: 16px 24px;
+    .table{        
+        //border: 0;        
+        max-height: 251px;
+        overflow-y: auto;
+        margin-top: 0;
+        .table__th, .table_txt{
+            font-size: 12px;
+        }
+    }
+}
+
+.table .table__td .table.table__border--non{
+    border: 0;
+    height: 174px;
+    overflow-y: auto;
+    margin-top: 0;
+    tr:first-child .table__td{
+        border-right: 0;
+        &:last-child{
+            border-right: 0;
+        }
+    }
+    .table__td{
+        border: 0;
+    }
+}
+
+
+/* container-write  table */
+.container-write .table{
+    margin-top: 24px;
+    + .btn-box{
+        display: block;
+        margin-top: 16px;
+    }
+    .tr--no-hover:hover{
+        background-color: transparent;
+    }
+    .table__td, .table__th{
+        padding: 4px 8px 5px;
+        position: relative;        
+    }
+    .table__td {
+        font-size: 12px;
+        > div {width: 100%}
+        .btn-add, .btn-delete{
+            font-size: 13px;
+            margin: 2px 16px 2px 0;            
+        }
+        .btn-checkbox__label:before{
+            left: 50%;
+            margin-left: -8px;
+        }
+        .tooltip-box{
+            .table__txt{
+                display: inline;                
+            }
+            .icon-info{
+                margin-top: 4px;
+                margin-left: 4px;
+            }
+            .tooltip__inner{
+                max-width: inherit;
+            }
+            .tooltip__txt{
+                max-width: inherit;
+                padding: 1px 0;
+            }
+        }
+        .input-field .input-field__input{
+            padding: 1px 6px;
+        }
+    }
+    .table__td--data span{
+        display: block;
+        background-color: $bg_default;
+        padding: 6px 8px;
+        border-radius: 4px;
+        word-break: break-all;
+        white-space: nowrap;
+        overflow: hidden;
+        min-height: 20px;
+        &.bg--white{
+            background: #fff;
+            //border: 1px solid $border_dark;
+        }
+    }
+    .table__th--btn, .table__td--btn{
+        &.table__th--btn-front{
+            padding-left: 22px;
+        }
+        .btn{
+            border: 0;
+            background-color: transparent;
+            padding: 0;
+        }
+        .btn-change-user{
+            @include position(absolute, 0, 8px, false, false);
+            @include transform(scale(0.8));
+            .sp{
+                margin-right: 0;
+            }
+        }
+        .btn-lst--open{
+            width: 100%;
+            min-height: 20px;
+            text-align: left;
+            @include ellipsis;
+            .btn__txt{
+                color: $txt;
+                padding: 0;
+                font-size: 13px;
+            }
+            .btn__txt-caption{
+                font-size: 12px;
+                font-weight: 400;
+            }
+            .sp{
+                @include position(absolute, 50%, false, false, 8px);
+                margin-top: -5px;
+                min-height: 10px;
+                width: 10px;
+            }
+            .icon-arrow--triangle-right{
+                @include transform(scale(0.7));
+            }
+            .icon-arrow{
+                @include transform(rotate(-90deg));
+            }
+        }
+    }
+    .table__td--datepicker-range{
+        .component-group .component-box{
+            width: 46%;
+            + .component-box{
+                margin-left: 4px;
+            }
+            &:nth-child(2){
+                width: 4%;
+            }
+        }
+    }
+    .input-field-table {
+        position: relative;  
+        .input-field__input{
+            padding: 1px 6px;
+            font-size: 13px;
+            &::placeholder{
+                font-size: 12px;
+                color: $txt_gray2;
+            }
+            &:-ms-input-placeholder{
+                font-size: 12px;
+                color: $txt_gray2;
+            }
+        }      
+        .btn-file{
+            padding: 0;
+            margin-bottom: 8px;            
+            .btn__txt{
+                padding: 6px 15px 7px;
+            }
+            + .input__dsc-txt{
+                display: inline-block;
+                margin-left: 16px;
+                @include verticalMiddle(32px);
+            }
+        }     
+        .input-field__file-box{
+            padding: 1px 8px;
+            height: 63px;
+            overflow-y: auto;
+            background: $bg_default;
+            border: 1px solid $border_dark;
+            border-radius: 4px;
+            .file-info{
+                position: relative;
+                font-size: 13px;
+                padding: 2px 0;
+            }
+            .file-info .btn--remove{
+                @include position(absolute, 3px, 0, false, false);
+            }
+        }
+    } 
+}
+
+/* popup table */
+.popup-wrap .popup-wrap__inner .popup__contents-table{
+    padding-right: 24px;
+    .table{
+        border-color: $border_dark;
+        thead{
+            width: calc(100% - 1px);
+        }
+    }
+    .table__th{
+        background-color: $table_th;
+        border: 1px solid $border_dark;    
+        border-width: 0 0 1px 1px; 
+        &:last-of-type{
+            border-width: 0 1px 1px;
+        }
+    }
+    .table__td {        
+        border-width: 1px 1px 0 1px;
+        border-color: $border_dark;
+        .table__txt{
+            cursor: default;
+            font-size: 12px;
+        }
+        .btn_group{
+            width: 16px;
+            margin: 0 auto;
+        }
+    }
+}

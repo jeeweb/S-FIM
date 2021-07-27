@@ -1,0 +1,738 @@
+$template_pc-vars: (
+	'icon-allmenu': (
+		offset-x: 0px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-arrow-down--ms': (
+		offset-x: -62px,
+		offset-y: -190px,
+		width: 12px,
+		height: 7px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-arrow-down': (
+		offset-x: -92px,
+		offset-y: -190px,
+		width: 10px,
+		height: 6px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-arrow-up--ms--orange': (
+		offset-x: -46px,
+		offset-y: -190px,
+		width: 12px,
+		height: 7px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-arrow-up': (
+		offset-x: -78px,
+		offset-y: -190px,
+		width: 10px,
+		height: 6px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-attachment': (
+		offset-x: -80px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-add--disabled': (
+		offset-x: -190px,
+		offset-y: -172px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-add--hover': (
+		offset-x: -210px,
+		offset-y: -32px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-add': (
+		offset-x: -210px,
+		offset-y: -16px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-arrow--disabled': (
+		offset-x: -108px,
+		offset-y: -78px,
+		width: 6px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-arrow': (
+		offset-x: -108px,
+		offset-y: -92px,
+		width: 6px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-print--disabled': (
+		offset-x: -20px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-print--hover': (
+		offset-x: -40px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-print': (
+		offset-x: -60px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-share--disabled': (
+		offset-x: -190px,
+		offset-y: -100px,
+		width: 14px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-share--hover': (
+		offset-x: -190px,
+		offset-y: -80px,
+		width: 14px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-button-share': (
+		offset-x: -190px,
+		offset-y: -60px,
+		width: 14px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-checkbox--disabled': (
+		offset-x: -140px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-checkbox--hover': (
+		offset-x: -160px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-checkbox--select-disabled': (
+		offset-x: -190px,
+		offset-y: 0px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-checkbox--select': (
+		offset-x: -190px,
+		offset-y: -20px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-checkbox': (
+		offset-x: -190px,
+		offset-y: -40px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-datepicker--select': (
+		offset-x: 0px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-datepicker-close': (
+		offset-x: -210px,
+		offset-y: 0px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-datepicker-next': (
+		offset-x: -177px,
+		offset-y: -36px,
+		width: 7px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-datepicker-prev': (
+		offset-x: -177px,
+		offset-y: -58px,
+		width: 7px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-datepicker': (
+		offset-x: -80px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-dropdown-delete': (
+		offset-x: -210px,
+		offset-y: -95px,
+		width: 10px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-error': (
+		offset-x: -190px,
+		offset-y: -120px,
+		width: 14px,
+		height: 14px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-info': (
+		offset-x: -190px,
+		offset-y: -138px,
+		width: 14px,
+		height: 14px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-layer-close': (
+		offset-x: -160px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-logo': (
+		offset-x: 0px,
+		offset-y: 0px,
+		width: 114px,
+		height: 22px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-first--disabled': (
+		offset-x: -52px,
+		offset-y: -26px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-first--hover': (
+		offset-x: -108px,
+		offset-y: -114px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-first': (
+		offset-x: -72px,
+		offset-y: -114px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-last--disabled': (
+		offset-x: -118px,
+		offset-y: -72px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-last--hover': (
+		offset-x: -118px,
+		offset-y: -36px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-last': (
+		offset-x: -118px,
+		offset-y: 0px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-next--disabled': (
+		offset-x: -72px,
+		offset-y: -78px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-next--hover': (
+		offset-x: 0px,
+		offset-y: -114px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-next': (
+		offset-x: 0px,
+		offset-y: -78px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-prev--disabled': (
+		offset-x: -36px,
+		offset-y: -114px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-prev--hover': (
+		offset-x: -154px,
+		offset-y: 0px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-pagination-prev': (
+		offset-x: -36px,
+		offset-y: -78px,
+		width: 32px,
+		height: 32px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-radio--disabled': (
+		offset-x: -140px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-radio--hover': (
+		offset-x: -120px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-radio--select-disabled': (
+		offset-x: -100px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-radio--select': (
+		offset-x: -60px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-radio': (
+		offset-x: -40px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-search--active': (
+		offset-x: -210px,
+		offset-y: -48px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-search--big': (
+		offset-x: -20px,
+		offset-y: -150px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-search-delete': (
+		offset-x: -120px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-search-header': (
+		offset-x: -100px,
+		offset-y: -170px,
+		width: 16px,
+		height: 16px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-search': (
+		offset-x: -210px,
+		offset-y: -64px,
+		width: 12px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-table-layer-close': (
+		offset-x: 0px,
+		offset-y: -205px,
+		width: 8px,
+		height: 8px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-thumbnail-like': (
+		offset-x: -190px,
+		offset-y: -156px,
+		width: 14px,
+		height: 12px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-thumbnail-play': (
+		offset-x: 0px,
+		offset-y: -26px,
+		width: 48px,
+		height: 48px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--active-bottom': (
+		offset-x: -210px,
+		offset-y: -163px,
+		width: 10px,
+		height: 9px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--active-left': (
+		offset-x: -210px,
+		offset-y: -176px,
+		width: 9px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--active-right': (
+		offset-x: -210px,
+		offset-y: -190px,
+		width: 9px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--active-top': (
+		offset-x: -98px,
+		offset-y: -62px,
+		width: 10px,
+		height: 9px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--bottom': (
+		offset-x: -210px,
+		offset-y: -109px,
+		width: 10px,
+		height: 9px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--left': (
+		offset-x: -210px,
+		offset-y: -122px,
+		width: 9px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--right': (
+		offset-x: -210px,
+		offset-y: -136px,
+		width: 9px,
+		height: 10px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tooltip-arrow--top': (
+		offset-x: -210px,
+		offset-y: -150px,
+		width: 10px,
+		height: 9px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-checked': (
+		offset-x: -23px,
+		offset-y: -190px,
+		width: 19px,
+		height: 11px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-checked2': (
+		offset-x: 0px,
+		offset-y: -190px,
+		width: 19px,
+		height: 11px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-depth': (
+		offset-x: -154px,
+		offset-y: -80px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-expend': (
+		offset-x: -169px,
+		offset-y: -80px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-expend2': (
+		offset-x: -154px,
+		offset-y: -112px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-fold': (
+		offset-x: -169px,
+		offset-y: -112px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-fold2': (
+		offset-x: -88px,
+		offset-y: -26px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-folder': (
+		offset-x: -210px,
+		offset-y: -80px,
+		width: 12px,
+		height: 11px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-last-depth': (
+		offset-x: -103px,
+		offset-y: -26px,
+		width: 11px,
+		height: 28px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-open-unchecked': (
+		offset-x: -154px,
+		offset-y: -58px,
+		width: 19px,
+		height: 18px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-open-unchecked2': (
+		offset-x: -154px,
+		offset-y: -36px,
+		width: 19px,
+		height: 18px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-unchecked': (
+		offset-x: -75px,
+		offset-y: -62px,
+		width: 19px,
+		height: 11px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+	'icon-tree-unchecked2': (
+		offset-x: -52px,
+		offset-y: -62px,
+		width: 19px,
+		height: 11px,
+		total-width: 222px,
+		total-height: 213px,
+		imageSrc: '../img/sprites/template_pc.png'
+	),
+);
+$template_pc-origin: (
+  total-width: 222px,
+  total-height: 213px,
+  imageSrc: '../img/sprites/template_pc.png'
+);
+
+@mixin sprite-size($image) {
+	background-size: map-get($image, 'total-width') map-get($image, 'total-height');
+}
+
+@mixin sprite-image($image) {
+	$image-path: map-get($image, 'imageSrc');
+	background-image: url($image-path);
+}
+
+@mixin sprite-image-retina($image) {
+	$image-path: map-get($image, 'imageSrc');
+	$image-path-retina: str-slice($image-path, 1, str-index($image-path, '.png') - 1) + '@2x.png';
+	background-image: url($image-path-retina);
+}
+
+@mixin set-template_pc {
+  @include sprite-size($template_pc-origin);
+  @include sprite-image($template_pc-origin);
+}
+
+@mixin sp-template_pc($image, $size: true) {
+  @include set-template_pc;
+	background-position: map-get(map-get($template_pc-vars, $image), 'offset-x') map-get(map-get($template_pc-vars, $image), 'offset-y');
+	@if $size {
+		width: map-get(map-get($template_pc-vars, $image), 'width');
+		height: map-get(map-get($template_pc-vars, $image), 'height');
+	}
+}
